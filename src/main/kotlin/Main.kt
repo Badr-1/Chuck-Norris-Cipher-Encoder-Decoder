@@ -18,13 +18,30 @@ fun main(args: Array<String>) {
 fun decode(){
     println("Input encoded string:")
     val encoded = readln().split(" ").toMutableList()
+    if (encoded.size % 2 != 0) { // checks if The number of blocks is odd;
+        println("Encoded string is not valid.")
+        return
+    }
     var binary = ""
     encoded.forEachIndexed { index, s ->
         if (index % 2 == 0 && index != encoded.lastIndex) {
+            if (s != "0" && s != "00") { // checks if The first block of each sequence is not 0 or 00;
+                println("Encoded string is not valid.")
+                return
+            }
             val bit = if (encoded[index] == "0") "1" else "0"
+            if (!encoded[index + 1].matches(Regex("0+"))) { // checks if The encoded message includes characters other than 0 or spaces;
+                println("Encoded string is not valid.")
+                return
+            }
             val num = encoded[index + 1].length
             binary += bit.repeat(num)
         }
+    }
+    if (binary.length % 7 != 0) // checks if The length of the decoded binary string is not a multiple of 7.
+    {
+        println("Encoded string is not valid.")
+        return
     }
     val charsBin = binary.chunked(BIN_LENGTH).toMutableList()
     val chars = mutableListOf<Char>()
