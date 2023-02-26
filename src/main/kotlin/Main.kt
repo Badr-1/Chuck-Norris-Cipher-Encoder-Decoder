@@ -1,7 +1,21 @@
 const val BIN_LENGTH = 7
 const val PAD_CHAR = '0'
 fun main(args: Array<String>) {
-
+    println("Input encoded string:")
+    val encoded = readln().split(" ").toMutableList()
+    var binary = ""
+    encoded.forEachIndexed { index, s ->
+        if (index % 2 == 0 && index != encoded.lastIndex) {
+            val bit = if (encoded[index] == "0") "1" else "0"
+            val num = encoded[index + 1].length
+            binary += bit.repeat(num)
+        }
+    }
+    val charsBin = binary.chunked(BIN_LENGTH).toMutableList()
+    val chars = mutableListOf<Char>()
+    charsBin.forEach { chars.add(Char(it.toInt(2))) }
+    println("The result:")
+    println(chars.joinToString(""))
 }
 
 fun encode(){
