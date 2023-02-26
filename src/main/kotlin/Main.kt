@@ -1,6 +1,9 @@
 const val BIN_LENGTH = 7
 const val PAD_CHAR = '0'
 fun main(args: Array<String>) {
+
+}
+fun decode(){
     println("Input encoded string:")
     val encoded = readln().split(" ").toMutableList()
     var binary = ""
