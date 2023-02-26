@@ -1,17 +1,25 @@
+import com.github.kinquirer.KInquirer
+import com.github.kinquirer.components.promptList
+
 const val BIN_LENGTH = 7
 const val PAD_CHAR = '0'
 fun main(args: Array<String>) {
     while (true) {
-        println("Please input operation (encode/decode/exit):")
-        when (val option = readln()) {
+        val action: String = KInquirer.promptList(
+            message = "What To Do?",
+            choices = listOf(
+                "encode", "decode","exit"
+            ),
+            hint = "press Enter to pick",
+        )
+        when (action) {
             "encode" -> encode()
             "decode" -> decode()
             "exit" -> {
                 println("Bye!")
                 break
             }
-
-            else -> println("There is no '$option' operation")
+            else -> println("There is no '$action' operation")
         }
     }
 }
