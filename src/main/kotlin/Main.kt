@@ -1,7 +1,19 @@
 const val BIN_LENGTH = 7
 const val PAD_CHAR = '0'
 fun main(args: Array<String>) {
+    while (true) {
+        println("Please input operation (encode/decode/exit):")
+        when (val option = readln()) {
+            "encode" -> encode()
+            "decode" -> decode()
+            "exit" -> {
+                println("Bye!")
+                break
+            }
 
+            else -> println("There is no '$option' operation")
+        }
+    }
 }
 fun decode(){
     println("Input encoded string:")
@@ -17,7 +29,7 @@ fun decode(){
     val charsBin = binary.chunked(BIN_LENGTH).toMutableList()
     val chars = mutableListOf<Char>()
     charsBin.forEach { chars.add(Char(it.toInt(2))) }
-    println("The result:")
+    println("Decoded string:")
     println(chars.joinToString(""))
 }
 
@@ -37,8 +49,9 @@ fun encode(){
         encryptedBinary.add("0".repeat(bin.length))
     }
 
-    println("The result:")
+    println("Encoded string:")
     encryptedBinary.forEach {
         print("$it ")
     }
+    println()
 }
