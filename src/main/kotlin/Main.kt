@@ -1,6 +1,10 @@
 const val BIN_LENGTH = 7
 const val PAD_CHAR = '0'
 fun main(args: Array<String>) {
+
+}
+
+fun encode(){
     println("Input string:")
     val message = readln()
     val chars = message.toMutableList()
